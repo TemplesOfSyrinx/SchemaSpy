@@ -4,7 +4,7 @@ MAINTAINER John J. Chambers-Malewig
 ENV SCHEMASPY_VERSION 5.0.0
 ENV GRAPHVIZ_VERSION 2.38.0-7
 
-# Update and install GraphViz
+# Update and install GraphViz as root
 RUN apt-get update && \
     apt-get install -y \
         graphviz=${GRAPHVIZ_VERSION} \
@@ -14,8 +14,15 @@ RUN apt-get update && \
            /tmp/* \
            /var/tmp/*
 
-COPY schemaSpy_${SCHEMASPY_VERSION}.jar schemaSpy.jar
+# Create schemaSpy to execute command with limited permissions
+RUN useradd schemaSpy --create-home
 
-ENTRYPOINT [ "java", "-jar", "schemaSpy.jar" ]
+USER schemaSpy
+
+WORKDIR /home/schemaSpy/workdir
+
+COPY schemaSpy_${SCHEMASPY_VERSION}.jar /home/schemaSpy/lib/schemaSpy.jar
+
+ENTRYPOINT [ "java", "-jar", "/home/schemaSpy/lib/schemaSpy.jar" ]
 
 CMD [ "--help" ]
