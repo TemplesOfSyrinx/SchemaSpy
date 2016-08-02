@@ -23,6 +23,8 @@ WORKDIR /home/schemaSpy/workdir
 
 COPY schemaSpy_${SCHEMASPY_VERSION}.jar /home/schemaSpy/lib/schemaSpy.jar
 
+USER root
+
 ENTRYPOINT [ "java", "-jar", "/home/schemaSpy/lib/schemaSpy.jar" ]
 
 CMD [ "--help" ]
