@@ -1,4 +1,4 @@
-# SchemaSpy
+# dkr-SchemaSpy
 
 A Docker image for the [SchemaSpy][schemaspy], a database schema metadata browser (see [sample output][sample]).
 
