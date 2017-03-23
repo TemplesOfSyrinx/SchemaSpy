@@ -16,7 +16,7 @@ A Docker image for the [SchemaSpy][schemaspy], a database schema metadata browse
 
 SchemaSpy help:
 ```
-docker run --rm templesofsyrinx/dkr-schemaspy
+docker run --rm templesofsyrinx/dkr-schemaspy:{Version}
 ```
 
 [schemaspy]: http://schemaspy.sourceforge.net/
